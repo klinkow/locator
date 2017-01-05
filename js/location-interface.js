@@ -1,4 +1,23 @@
+var apiKey = require('./../.env').apiKey
+
 $( document ).ready(function() {
+
+  function initMap() {
+    $.ajax({
+      url: 'https://maps.googleapis.com/maps/api/js?key=' + apiKey,
+      dataType: "script"
+    }).done(function() {
+      var heartIsland = {lat: 43.978675, lng: 15.381191};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: heartIsland,
+        mapTypeId : google.maps.MapTypeId.SATELLITE
+      });
+    });
+  }
+
+initMap();
+
   $('#locateUser').click(locateUser);
 });
 
